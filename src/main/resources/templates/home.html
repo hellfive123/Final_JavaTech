@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+<title>Trang chủ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <div class="homepage">
+        <div class=" text-center homepageborder">
+            <img src="/img/logo2.png" class="mt-3 logohomepage">
+            <p>WG26 - C&V's Best Web Store Application</p>
+        </div>
+    </div>
+    <div th:replace="fragments/header :: header">...</div>
+    <div class="container">
+        <div class="row">
+	        <div class="col-12">
+	            <h1 class="title">Ứng Dụng Phổ Biến</h1>
+	        </div>
+	        <div class="col-12 font">
+	            <div class="col-sm-4" th:each="app : ${appList}">
+		            <a th:href="@{/home/detail(pid=${pid},id=${app.appName})}">
+	                   <div class="panel">
+	                    	<div class="panel-body"><img th:src="${app.avatarPath}" class=" img-responsive imgcmr"alt="Image"></div>
+		                    <div class="panel-footer" th:text="${app.appName}"></div>
+		                </div>
+		            </a>
+	            </div>
+          </div>
+     </div>
+
+    <!-- <footer class="container-fluid text-center">
+        <p>Online Store Copyright</p>
+    </footer> -->
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Upload ứng dụng</title>
+    <link rel="stylesheet" href="../css/style.css">
+<body>
+    <div class="container col-4 col-md-4 regisform">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/admin/add-app}" th:object="${app}">
+            <div class="row">
+                <img src="/img/logo2.png" class="logoreg m-auto p-2">
+            </div>
+
+            <div class="form-row mb-3">
+                <h3 class="m-auto">UPLOAD ỨNG DỤNG</h3>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tên ứng dụng" id="nameapp" name="appName" required>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="gender">
+                            <select id="category" name="genre" class="form-control" required>
+                                <div th:if="${app}">
+                                    <option th:value="${app.genre}" name='LOAI'> Loại</option>
+                                </div>
+                                <option label="Giải trí" value="game" name='LOAI' >Giải trí</option>
+                                <option label="Xem phim" value="phim" name='LOAI' >Xem phim</option>
+                                <option label="Đọc sách" value="sach" name='LOAI' >Đọc sách</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Thể loại" id="theloai" name="tagName" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text"  class="form-control appdescription" placeholder="Mô tả" id="description" name="description" required>
+                    </div>
+                </div>
+            </div>
+			<div class="form-row">
+				<div class="col">
+					<div class="form-group " required>
+					<p>File hình ảnh: </p>
+						<input type="file" name="avatarPath">
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+                <div class="col">
+                    <div class="form-group " required>
+                    	<p>File sản phẩm: </p>
+                        <input type="file" name="downloadPath">
+                    </div>
+                    <div class=" form-row">
+                        <div class="col">
+                            <div class="form-group text-center">
+   	                            <h3 th:if="${param.success}" class="text-center text-success">Thêm ứng dụng thành công</h3>
+                            	<a th:href="@{/home(pid=2)}" class="btn btn-primary">Quay lại</a>
+                                <button type="submit" class="btn btn-primary font-weight-bolder  w-50 ">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+        </form>
+    </div>
+    </div>
+
+</body>
+
+</html>

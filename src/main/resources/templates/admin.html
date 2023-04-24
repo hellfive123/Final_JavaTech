@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-100">
+
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="homepage">
+        <div class=" text-center homepageborder">
+            <img src="/img/logo2.png" class="mt-3 logohomepage">
+            <p>WG26 - C&V's Best Web Store Application</p>
+        </div>
+    </div>
+    <div th:replace="fragments/header :: header">...</div>
+    <div class="container text-centers">
+        <div class="col-12">
+            <div th:if="${userList}">
+                <h1 class="text-center">Danh sách người dùng</h1>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">First Name</th>
+                                    <th scope="col" class="text-center">Last Name</th>
+                                    <th scope="col" class="text-center">Email</th>
+                                    <th scope="col" class="text-center">Created Date</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="user : ${userList}">
+                                    <td th:utext="${user.firstName}"></td>
+                                    <td th:utext="${user.lastName}"></td>
+                                    <td th:utext="${user.email}"></td>
+                                    <td th:utext="${user.createdDate}"></td>
+                                    <td>
+                                        <form th:action="@{/admin/delete-user?(pid=${pid},id=${user.id})}" method="post">
+                                            <input type="submit" class="btn btn-danger" value="Xóa quyền truy cập">                   
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${appList}">
+                <h1 class="text-center">Danh sách ứng dụng</h1>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">App Name</th>
+                                    <th scope="col" class="text-center">Genre</th>
+                                    <th scope="col" class="text-center">Tag</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="app : ${appList}">
+                                    <td th:utext="${app.appName}"></td>
+                                    <td th:utext="${app.genre}"></td>
+                                    <td th:utext="${app.tagName}"></td>
+                                    <td>
+                                        <form th:action="@{/admin/delete-app?(pid=${pid},id=${app.id})}" method="post">
+                                            <input type="submit" class="btn btn-danger" value="Xóa ứng dụng">                   
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${cardList}">
+                <h1 class="text-center">Danh sách mã thẻ</h1>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Card code</th>
+                                    <th scope="col" class="text-center">Amount</th>
+                                    <th scope="col" class="text-center">Status</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="card : ${cardList}">
+                                    <td th:utext="${card.cardCode}"></td>
+                                    <td th:utext="${card.amount}"></td>
+                                    <td th:utext="${card.Status}"></td>
+                                    <td>
+                                        <form th:action="@{/admin/delete-app?(pid=${pid},id=${app.id})}" method="post">
+                                            <input type="submit" class="btn btn-danger" value="Xóa ứng dụng">                   
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

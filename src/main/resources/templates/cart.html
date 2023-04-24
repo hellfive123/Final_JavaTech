@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-100">
+
+<head>
+    <title>Giỏ Hàng</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="homepage">
+        <div class=" text-center homepageborder">
+            <img src="/img/logo2.png" class="mt-3 logohomepage">
+            <p>WG26 - C&V's Best Web Store Application</p>
+        </div>
+    </div>
+
+    <div th:replace="fragments/header :: header">...</div>
+    <!-- end header -->
+
+        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
+        <div class="container m-0">
+                <div class="col-12">
+                    <h1 class="text-center">Ứng dụng mong muốn</h1>
+                <div class="col-12">
+                    <table class="table table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="text-center"></th>
+                                <th class="text-center">Tên sản phẩm</th>
+                                <th class="text-center">Thể loại</th>
+                                <th class="text-center">Loại</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="datarow">
+                            <tr th:each="item : ${items}">
+                                <td class="text-center col-1">
+                                    <a id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham">
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i> 
+                                    </a>
+                                </td>
+                                <td class="text-center" th:utext="${item.appName}"></td>
+                                <td class="text-center" th:utext="${item.genre}"></td>
+                                <td class="text-center" th:utext="${item.tagName}"></td>
+                                <td class="text-center">
+                                    <a  th:href="@{${item.downloadPath}}" id="delete_1" data-sp-ma="2" class="btn btn-info btn-delete-sanpham">
+                                        <i class="" aria-hidden="true"></i> Download
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End block content -->
+
+</body>
+
+</html>

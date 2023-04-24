@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+	<div th:if="${param.error} and ${param.email} == null and ${param.password} == null">
+    	<div class="alert alert-danger" >Tài Khoản hoặc mật khẩu không đúng vui lòng nhập lại</div>
+    </div>
+    <div class="container col-4 col-md-4 loginform">
+        <form method="post" th:action="@{/login}" role="form">
+            <div class="row">
+                <img src="/img/logo2.png" class="logoforget m-auto p-2">
+            </div>
+            <div class="form-group text-center">
+                <h3 class="m-auto dn">ĐĂNG NHẬP</h3>
+            </div>
+            <div class="form-group">
+                <label for="user" class="font-weight-bolder lead">Email : </label>
+                <input type="text" class="form-control" placeholder="Tài khoản" id="email"  name="email"  >
+                <p th:if="${param.email}"> Vui lòng nhập email</p>
+            </div>
+            <div class="form-group">
+                <label for="pwd" class="font-weight-bolder lead pass">Mật khẩu : </label>
+                <input type="password" class="form-control " placeholder="Mật khẩu" id="password" name="password" >
+                <p th:if="${param.password}"> Vui lòng nhập mật khẩu</p>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="MATKHAUNHAP"> Nhớ mật khẩu
+                </label>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary font-weight-bolder w-50 ">Đăng nhập</button>
+                
+            </div>
+            <div class="form-group text-center font-weight-bolder">
+                <a th:href="@{/register}">Đăng ký tài khoản</a>
+            </div>
+
+            <div class="form-group text-center font-weight-bolder">
+                <a th:href="@{/home?pid=0}" class="m-auto">Quay lại</a>
+            </div>
+    	</form>
+    </div>
+
+</body>
+
+</html>
