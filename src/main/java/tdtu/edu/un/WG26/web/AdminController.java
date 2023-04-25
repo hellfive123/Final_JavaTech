@@ -71,8 +71,10 @@ public class AdminController {
 			return "redirect:/home?pid=0";
 		}
 		userServices.deleteUserById(id);
+		System.out.println(id);
 		model.addAttribute("pid", pid);
 		return "redirect:/admin/get-all-user?pid="+pid;
+		
 	}
 	
 	@GetMapping("admin/get-all-app")
