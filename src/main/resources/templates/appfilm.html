@@ -13,14 +13,8 @@
 
 </head>
 
-<body>
+<body class="background-login">
 
-    <div class="homepage">
-        <div class=" text-center homepageborder">
-            <img src="/img/logo2.png" class="mt-3 logohomepage">
-            <p>WG26 - C&V's Best Web Store Application</p>
-        </div>
-    </div>
     <div th:replace="fragments/header :: header">...</div>
     <style>
 	    .panel {
@@ -36,7 +30,14 @@
 	            <div class="col-sm-4" th:each="app : ${appList}">
 		            <a th:href="@{/home/detail(pid=${pid},id=${app.appName})}">
 	                   <div class="panel">
-	                    	<div class="panel-body"><img th:src="${app.avatarPath}" class=" img-responsive imgcmr"alt="Image"></div>
+                           <div class="panel-body position-relative">
+                               <img th:src="${app.avatarPath}" class=" img-responsive imgcmr"alt="Image">
+                               <div class="overlay d-flex justify-content-center align-items-center">
+                                   <div class="text-center mx-auto">
+                                       <h3 class="" th:text="${#strings.abbreviate(app.description,80)}"></h3><p class="font-weight-light overlay-text">xem thêm</p>
+                                   </div>
+                               </div>
+                           </div>
 		                    <div class="panel-footer" th:text="${app.appName}"></div>
 		                </div>
 		            </a>

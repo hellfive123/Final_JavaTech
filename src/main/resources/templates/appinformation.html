@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -13,78 +13,191 @@
     <title>Thông tin ứng dụng</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<body class="background-login">
+<div class="container emp-profile" th:each="app : ${appInfo}">
+    <form method="POST" enctype="multipart/form-data" th:action="@{/home/add-to-cart(pid=${pid},id=${app.appName})}"  th:object="${cart}">
+        <div class="row mb-5">
+            <div class="col  text-center">
+                <h2 th:text="${app.appName}">
+                </h2>
+            </div>
 
-<body class="userform m-5">
-
-   <body class="userform m-5">
-
-    <div class="container" th:each="app : ${appInfo}">
-        <form method="POST" th:action="@{/home/add-to-cart(pid=${pid},id=${app.appName})}"  th:object="${cart}">
-            <div class="row gutters">
-                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-3" >
-                    <div class="card h-100 ">
-                        <div class="card-body ">
-                            <div class="account-settings ">
-                                <div class="user-profile mt-5">
-                                    <div class="user-avatar">
-                                        <img th:src="${app.avatarPath}" alt="avatar" class="
-                                        d-block appimg m-auto">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 align-self-center">
+                <div class="profile-img">
+                    <img th:src="${app.avatarPath}" alt="" width="1000" height="1000" />
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="profile-head col-8">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông Tin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bình Luận</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" class="profile-edit-btn btn-danger text-white" name="btnAddMore" value="Thêm Giỏ Hàng"/>
                     </div>
                 </div>
-                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="row gutters">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class=" titleuserform">Thông tin ứng dụng</h6>
-                                </div>
 
-                                <div class="col-12">
-                                    <div class="form-group mt-5 text-center">
-                                        <h1 th:text="${app.appName}"></h1>
+
+                <div class="row">
+                    <div class="col pl-0">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row mb-2">
+                                    <div class="col-md-2">
+                                        <label>Ứng Dụng</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p th:text="${app.genre}"></p>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <h3>Thể loại: <span th:text="${app.genre}"></span></h3>
+                                <div class="row mb-2">
+                                    <div class="col-md-2">
+                                        <label>Thể Loại</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p th:text="${app.tagName}"></p>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <h3><span th:text="${app.tagName}"></span></h3>
+                                <div class="row mb-2">
+                                    <div class="col-md-2">
+                                        <label>Nội dung</label>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <h3>Mô tả : </h3>
-                                        <div class="form-group description">
-                                            <p th:text="${app.description}"></p>
-                                        </div>
+                                    <div class="col-md-10">
+                                        <p th:text="${app.description}"></p>
                                     </div>
                                 </div>
                             </div>
-                            <h3 th:if="${param.error}" class="text-center text-danger">Ứng dụng đã tồn tại trong danh sách mong muốn</h3>
-                            <h3 th:if="${param.success}" class="text-center text-success">Ứng dụng đã được thêm vào danh sách mong muốn</h3>
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="text-right">
-                                    	<a th:href="@{/home(pid=${pid})}" class="btn btn-primary">Quay lại</a>
-                                        <button type="submit" id="cart" name="addCart" class="btn btn-primary" th:if="${param.pid[0]} == 1" >Thêm Giỏ Hàng</button>
-                                        <a type="submit" id="download" name="download" th:href="@{${app.downloadPath}}" class="btn btn-primary" download th:if="${param.pid[0]} != 0" >Tải xuống</a>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <label>Văn Trần</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p> Hay !!!!</p>
                                     </div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <label>Văn Cường</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p> Hay tuyệt!!!!</p>
+                                    </div>
+                                </div> 
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
+                                        <label>Văn Ba</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p> Hay đỉnh!!!!</p>
+                                    </div>
+                                </div>    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <h4 th:if="${param.error}" class="text-center text-danger">Ứng dụng đã tồn tại trong danh sách mong muốn</h4>
+                <h4 th:if="${param.success}" class="text-center text-success">Ứng dụng đã được thêm vào danh sách mong muốn</h4>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col text-right">
+                <a th:href="@{/home(pid=${pid})}" class="btn btn-info" value="Cập Nhật"/>Quay lại</a>
+            </div>
+            <div class="">
+                <a type="submit" id="download" name="download" th:href="@{${app.downloadPath}}" class="btn btn-primary" download th:if="${param.pid[0]} != 0" >Tải xuống</a>            </div>
+
+        </div>
+    </form>
+</div>
 </body>
+
+
+<!--   <body class="appform m-5">-->
+
+<!--    <div class="container" th:each="app : ${appInfo}">-->
+<!--        <form method="POST" th:action="@{/home/add-to-cart(pid=${pid},id=${app.appName})}"  th:object="${cart}">-->
+<!--            <div class="row gutters">-->
+<!--                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-3" >-->
+<!--                    <div class="card h-100 ">-->
+<!--                        <div class="card-body ">-->
+<!--                            <div class="account-settings ">-->
+<!--                                <div class="app-profile mt-5">-->
+<!--                                    <div class="app-avatar">-->
+<!--                                        <img th:src="${app.avatarPath}" alt="avatar" class="-->
+<!--                                        d-block appimg m-auto">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row gutters">-->
+<!--                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+<!--                                    <h6 class=" titleappform">Thông tin ứng dụng</h6>-->
+<!--                                </div>-->
+
+<!--                                <div class="col-12">-->
+<!--                                    <div class="form-group mt-5 text-center">-->
+<!--                                        <h1 th:text="${app.appName}"></h1>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <h3>Thể loại: <span th:text="${app.genre}"></span></h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <h3><span th:text="${app.tagName}"></span></h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <h3>Mô tả : </h3>-->
+<!--                                        <div class="form-group description">-->
+<!--                                            <p th:text="${app.description}"></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <h3 th:if="${param.error}" class="text-center text-danger">Ứng dụng đã tồn tại trong danh sách mong muốn</h3>-->
+<!--                            <h3 th:if="${param.success}" class="text-center text-success">Ứng dụng đã được thêm vào danh sách mong muốn</h3>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+<!--                                    <div class="text-right">-->
+<!--                                    	<a th:href="@{/home(pid=${pid})}" class="btn btn-primary">Quay lại</a>-->
+<!--                                        <button type="submit" id="cart" name="addCart" class="btn btn-primary" th:if="${param.pid[0]} == 1" >Thêm Giỏ Hàng</button>-->
+<!--                                        <a type="submit" id="download" name="download" th:href="@{${app.downloadPath}}" class="btn btn-primary" download th:if="${param.pid[0]} != 0" >Tải xuống</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</body> &ndash;&gt;-->
+
+</html>
 
 </html>

@@ -12,8 +12,138 @@
     <title>Thông tin tài khoản</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<body class="background-login">
+    <div class="container emp-profile" th:each="user : ${userInfo}">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/home/user(pid=${pid})}" th:object="${user}">
+            <div class="row">
+                <div class="col-md-4 align-self-center">
+                    <div class="profile-img">
+                        <img th:src="${user.avatarPath}" alt="" width="1000" height="1000" />
+                        <div class="file btn btn-sm btn-primary">
+                            <input type="file" id="myFile" name="avatarPath"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="profile-head">
+                            <h2 th:text="${user.lastName}+' '+${user.firstName}">
+                            </h2>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông Tin</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Sửa Đổi</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-<body class="userform m-5">
+
+                    <div class="row">
+                        <div class="col pl-0">
+                            <div class="tab-content profile-tab" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Tên</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p th:text="${user.lastName}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Họ</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p th:text="${user.firstName}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p th:text="${user.email}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Giới Tính</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p th:text="${user.gender}"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Số Điện Thoại</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p th:text="${user.phoneNumber}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label>Số Điện Thoại</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="phonenumber"
+                                                   placeholder="Nhập số điện thoại của bạn" name="phoneNumber" th:value="${user.phoneNumber}">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-md-6">
+                                            <label>Giới Tính</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="gender">
+                                                <select id="Gender" name="gender" class="form-control" th:switch="${user.gender}">
+                                                    <option value="Emp" disabled selected>Giới tính của bạn là ?</option>
+
+                                                    <span th:case="'Nam'">
+													<option label="Nam" value="Nam" name="GIOITINH" selected>Nam</option>
+													<option label="Nữ" value="Nữ" name="GIOITINH">Nữ</option>
+													<option label="Khác" value="Khác" name="GIOITINH">Khác</option>
+												</span>
+
+                                                    <span th:case="'Nữ'">
+													<option label="Nam" value="Nam" name="GIOITINH">Nam</option>
+													<option label="Nữ" value="Nữ" name="GIOITINH" selected>Nữ</option>
+													<option label="Khác" value="Khác" name="GIOITINH">Khác</option>
+												</span>
+
+                                                    <span th:case="'Khác'">
+													<option label="Nam" value="Nam" name="GIOITINH">Nam</option>
+													<option label="Nữ" value="Nữ" name="GIOITINH">Nữ</option>
+												</span>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Cập Nhật"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <a th:href="@{/home(pid=${pid})}" class="btn btn-info" value="Cập Nhật"/>Quay lại</a>
+                </div>
+
+            </div>
+        </form>           
+    </div>
+</body>
+<!-- <body class="userform m-5">
     <div class="container" th:each="user : ${userInfo}">
     <form method="POST" enctype="multipart/form-data" th:action="@{/home/user(pid=${pid})}" th:object="${user}">
         <div class="row gutters">
@@ -119,6 +249,6 @@
         </div>
     </form>
     </div>
-</body>
+</body> -->
 
 </html>
