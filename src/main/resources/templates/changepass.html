@@ -9,13 +9,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Đổi mật khẩu</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="background-login">
+	<div th:if="${param.success}">
+	    <div class="alert alert-info">Đổi mật khẩu thành công</div>
+	</div>
     <div class="container form-application col-3 col-md-3 loginform">
         <form method="POST" th:action="@{/home/change-pass}" th:object="${user}">
+        	<div class="form-group text-right mt-3 mr-2 mb-1">
+                <a th:href="@{/home?pid=1}" class="m-auto"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+            </div>
             <div class="row">
                 <img src="/img/logo2.png" class="logochange m-auto p-2">
             </div>
@@ -36,7 +43,6 @@
     </div>
     </form>
     </div>
-
 </body>
 
 </html>

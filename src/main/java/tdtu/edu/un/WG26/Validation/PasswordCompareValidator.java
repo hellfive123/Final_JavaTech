@@ -1,6 +1,7 @@
 package tdtu.edu.un.WG26.Validation;
 
 import javax.validation.ConstraintValidator;
+
 import javax.validation.ConstraintValidatorContext;
 
 import tdtu.edu.un.WG26.web.dto.UserRegistrationDto;
@@ -18,6 +19,5 @@ public class PasswordCompareValidator implements ConstraintValidator<PasswordCom
 			return false;
 		}
 		return true;
-	}
-
+	}	
 }
