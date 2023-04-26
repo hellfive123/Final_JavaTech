@@ -1,6 +1,10 @@
 # Final_JavaTech
 
-This is a Java Spring Boot project developed for a final project in Java Technologies course. The project is a simple web application that allows users to create, read, update, and delete (CRUD) products in a MySQL database.
+With the rapid development of the 4.0 technology era, along with the increasing demand for easy and convenient shopping options for customers' tastes nowadays, the application of Information Technology in the field of sales is becoming more and more popular. Therefore, the issue is how to shorten administrative procedures, increase work efficiency, in order to facilitate buying and selling exchanges, and processing a large amount of information quickly, requiring us to have an appropriate management method.
+
+From the above issues, our group will carry out the project: "Inventory Management Application" to solve the problems that have been raised. We hope to develop a web-based inventory management system to increase efficiency instead of the traditional management method.
+
+The system that our group will build will be written in Java language, combined with a database using Hibernate, and using the Spring Boot Framework.
 
 ## Requirements
 
