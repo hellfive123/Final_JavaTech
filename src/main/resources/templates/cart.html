@@ -24,8 +24,7 @@
                 <div class="col-12 bg-white">
                     <table class="table table-bordered">
                         <thead class="text-center">
-                            <tr>
-                                <th class="text-center"></th>
+                            <tr>                              
                                 <th class="text-center">Tên sản phẩm</th>
                                 <th class="text-center">Thể loại</th>
                                 <th class="text-center">Loại</th>
@@ -33,12 +32,7 @@
                             </tr>
                         </thead>
                         <tbody id="datarow">
-                            <tr th:each="item : ${items}">
-                                <td class="text-center col-1">
-                                    <a id="delete_1" data-sp-ma="2" class="btn btn-danger btn-delete-sanpham">
-                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i> 
-                                    </a>
-                                </td>
+                            <tr th:each="item : ${items}">                                    
                                 <td class="text-center" th:utext="${item.appName}"></td>
                                 <td class="text-center" th:utext="${item.genre}"></td>
                                 <td class="text-center" th:utext="${item.tagName}"></td>

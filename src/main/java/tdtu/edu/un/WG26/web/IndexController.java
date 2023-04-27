@@ -2,6 +2,8 @@ package tdtu.edu.un.WG26.web;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -229,18 +231,19 @@ public class IndexController {
 	@PostMapping("/add-to-cart")
 	public String addProductToCart(@Validated @ModelAttribute("cart") CartDTO cartDTO, BindingResult result,
 			@AuthenticationPrincipal LoadUserDetail userDetail, @RequestParam("pid") int pid,
-			@RequestParam("id") String appName, Model model) {
+			@RequestParam("id") String appName, Model model) throws UnsupportedEncodingException {
+		String appNameEncoded = URLEncoder.encode(appName, "UTF-8");
 		App app = appServices.findAppByName(appName);
 		List<Cart> items = cartService.findAppByEmailAndAppNAme(userDetail.getEmail(), appName);
 		CartDTO cart = new CartDTO(userDetail.getEmail(), app.getAppName(), app.getGenre(), app.getTagName(),
 				app.getDownloadPath());
 		if (items.isEmpty() == false) {
-
-			return "redirect:/home/detail?pid=" + pid + "&id=" + appName + "&error";
+			
+			return "redirect:/home/detail?pid=" + pid + "&id=" + appNameEncoded + "&error";
 		} else {
 			model.addAttribute("pid", pid);
 			cartService.save(cart);
-			return "redirect:/home/detail?pid=" + pid + "&id=" + appName + "&success";
+			return "redirect:/home/detail?pid=" + pid + "&id=" + appNameEncoded + "&success";
 		}
 	}
 }
