@@ -12,6 +12,7 @@ To run this project, you need to have the following software installed on your m
 
 - Java JDK 17 or higher
 - Maven 4.0 or higher
+- MySQL 
 
 ## Installation
 
