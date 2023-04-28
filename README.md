@@ -10,11 +10,12 @@ The system that our group will build will be written in Java language, combined 
 
 To run this project, you need to have the following software installed on your machine:
 
-- Java JDK 8 or higher
-- Maven 3.6 or higher
-- MySQL 5.6 or higher
+- Java JDK 17 or higher
+- Maven 4.0 or higher
 
 ## Installation
+
+
 
 To install and run this project, follow these steps:
 
@@ -25,16 +26,22 @@ To install and run this project, follow these steps:
 
 3. Create a database named **webapp**.
 
-4. Edit the application.properties file in the src/main/resources folder to match your MySQL database configuration:
+4. Extract the **webapp_database.zip** file containing in project folder. Then import SQL files into **webapp** database.
+
+5. Account provided in database include <br />
+   **User account**: ***test@gmail.com***, ***123*** <br />
+   **Admin account**: ***admin@gmail.com***, ***123*** <br />
+   
+6. Edit the application.properties file in the src/main/resources folder to match your MySQL database configuration:
   **spring.datasource.url=jdbc:mysql://localhost:3306/webapp<br />**
   **spring.datasource.username=your_database_username<br />**
   **spring.datasource.password=your_database_password<br />**
   
-5. Build the project using Maven: **mvn clean install**.
+7. Build the project using Maven: **mvn clean install**.
 
-6. Run the project using Maven: **mvn spring-boot:run**.
+8. Run the project using Maven: **mvn spring-boot:run**.
 
-7. The project should now be running on `http://localhost:8080/login`. You can access the web application by visiting this URL in your web browser.
+9. The project should now be running on `http://localhost:8080/login`. You can access the web application by visiting this URL in your web browser.
 
 
 
